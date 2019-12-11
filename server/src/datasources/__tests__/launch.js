@@ -3,7 +3,7 @@ const LaunchAPI = require('../launch');
 /**
  * There are mock Launches at the bottom of this file.
  * 1 mock for the RAW API reponse, and another
- * for the shape of the lauch after it would have been
+ * for the shape of the launch after it would have been
  * transformed by the launch reducer.
  */
 
