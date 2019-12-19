@@ -2,21 +2,17 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import { ApolloClient } from 'apollo-client'
-import { ApolloProvider, useQuery } from '@apollo/react-hooks'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
+import { ApolloProvider, useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import Pages from './pages'
 import Login from './pages/login'
-import injectStyles from './styles'
 import { resolvers, typeDefs } from './resolvers'
+import injectStyles from './styles'
 
 const cache = new InMemoryCache();
-const link = new HttpLink({
-    uri: 'http://localhost:4000/'
-});
-
 const client = new ApolloClient({
     cache,
     link: new HttpLink({
@@ -25,8 +21,8 @@ const client = new ApolloClient({
             authorization: localStorage.getItem('token'),
         },
     }),
-    typeDefs,
     resolvers,
+    typeDefs,
 });
 
 cache.writeData({
@@ -41,23 +37,6 @@ const IS_LOGGED_IN = gql`
         isLoggedIn @client
     }
 `;
-
-/*
-client
-    .query({
-        query: gql`
-            query GetLaunch {
-                launch(id: 56) {
-                    id
-                    mission {
-                        name
-                    }
-                }
-            }
-        `
-    })
-    .then(result => console.log(result));
-*/
 
 function IsLoggedIn() {
     const { data } = useQuery(IS_LOGGED_IN);
