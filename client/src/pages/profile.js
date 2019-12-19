@@ -14,8 +14,8 @@ export const GET_MY_TRIPS = gql`
         ...LaunchTile
       }
     }
-    ${LAUNCH_TILE_DATA}
   }
+  ${LAUNCH_TILE_DATA}
 `;
 
 export default function Profile() {
